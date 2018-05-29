@@ -30,7 +30,7 @@ import {allTodos} from "./reducers/selectors";
 // });
 
 document.addEventListener('DOMContentLoaded',()=>{
-  const rootEl = document.getElementById("root");
+  const rootEl = document.getElementById("content");
   const store = configureStore();
   window.store = store;
   window.receiveTodo = receiveTodo;
