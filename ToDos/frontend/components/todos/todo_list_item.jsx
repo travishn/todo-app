@@ -12,5 +12,4 @@ class TodoListItem extends React.Component {
     );
   }
 }
-
 export default TodoListItem;
