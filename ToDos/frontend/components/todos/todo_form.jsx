@@ -9,38 +9,47 @@ class TodoForm extends React.Component{
       done: false,
     };
 
-    this.handleTitleChange = this.handleTitleChange.bind(this);
-    this.handleBodyChange = this.handleBodyChange.bind(this);
+    // this.handleTitleChange = this.handleTitleChange.bind(this);
+    // this.handleBodyChange = this.handleBodyChange.bind(this);
     this.submitTodo = this.submitTodo.bind(this);
   }
 
-
-  handleTitleChange(event){
-    event.preventDefault();
-    this.setState({
-      title: event.target.value,
-
-    });
+  handleChange(field){
+    return (event) => {
+      this.setState({
+        [field]: event.target.value,
+      });
+    };
   }
-  handleBodyChange(event){
-    event.preventDefault();
-    this.setState({
-      body: event.target.value
-    });
-  }
+
+
+  // handleTitleChange(event){
+  //   event.preventDefault();
+  //   this.setState({
+  //     title: event.target.value,
+  //
+  //   });
+  // }
+  //
+  // handleBodyChange(event){
+  //   event.preventDefault();
+  //   this.setState({
+  //     body: event.target.value
+  //   });
+  // }
 
   submitTodo(event) {
     event.preventDefault();
-    const { receiveTodo } = this.props;
+    const { receiveTodo, id } = this.props;
     const { title, body, done} = this.state;
     const newTodo = {
-      id: this.props.info,
+      id,
       title,
       body,
       done
     };
 
-    receiveTodo(newTodo);
+    receiveTodo(newTodo); //.then
     this.setState({
       title: '',
       body: "",
@@ -54,8 +63,8 @@ class TodoForm extends React.Component{
     const { title, body } = this.state;
     return (
       <div>
-        <input value = { title } placeholder= 'Enter something' onChange={this.handleTitleChange}></input>
-        <input value = { body } placeholder= 'Enter something' onChange={this.handleBodyChange}></input>
+        <input value = { title } placeholder= 'Enter something' onChange={this.handleChange("title")} />
+        <textarea value = { body } onChange={this.handleChange("body")} ></textarea>
 
         <button onClick={this.submitTodo}>Add new todo!</button>
       </div>

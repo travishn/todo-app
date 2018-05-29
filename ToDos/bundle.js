@@ -26404,7 +26404,7 @@ var TodoList = function TodoList(_ref) {
   return _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(_todo_form2.default, { info: (0, _utils2.default)(), receiveTodo: receiveTodo }),
+    _react2.default.createElement(_todo_form2.default, { id: (0, _utils2.default)(), receiveTodo: receiveTodo }),
     _react2.default.createElement(
       'ul',
       null,
@@ -26503,6 +26503,8 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -26523,47 +26525,57 @@ var TodoForm = function (_React$Component) {
       done: false
     };
 
-    _this.handleTitleChange = _this.handleTitleChange.bind(_this);
-    _this.handleBodyChange = _this.handleBodyChange.bind(_this);
+    // this.handleTitleChange = this.handleTitleChange.bind(this);
+    // this.handleBodyChange = this.handleBodyChange.bind(this);
     _this.submitTodo = _this.submitTodo.bind(_this);
     return _this;
   }
 
   _createClass(TodoForm, [{
-    key: 'handleTitleChange',
-    value: function handleTitleChange(event) {
-      event.preventDefault();
-      this.setState({
-        title: event.target.value
+    key: 'handleChange',
+    value: function handleChange(field) {
+      var _this2 = this;
 
-      });
+      return function (event) {
+        _this2.setState(_defineProperty({}, field, event.target.value));
+      };
     }
-  }, {
-    key: 'handleBodyChange',
-    value: function handleBodyChange(event) {
-      event.preventDefault();
-      this.setState({
-        body: event.target.value
-      });
-    }
+
+    // handleTitleChange(event){
+    //   event.preventDefault();
+    //   this.setState({
+    //     title: event.target.value,
+    //
+    //   });
+    // }
+    //
+    // handleBodyChange(event){
+    //   event.preventDefault();
+    //   this.setState({
+    //     body: event.target.value
+    //   });
+    // }
+
   }, {
     key: 'submitTodo',
     value: function submitTodo(event) {
       event.preventDefault();
-      var receiveTodo = this.props.receiveTodo;
+      var _props = this.props,
+          receiveTodo = _props.receiveTodo,
+          id = _props.id;
       var _state = this.state,
           title = _state.title,
           body = _state.body,
           done = _state.done;
 
       var newTodo = {
-        id: this.props.info,
+        id: id,
         title: title,
         body: body,
         done: done
       };
 
-      receiveTodo(newTodo);
+      receiveTodo(newTodo); //.then
       this.setState({
         title: '',
         body: "",
@@ -26582,8 +26594,8 @@ var TodoForm = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement('input', { value: title, placeholder: 'Enter something', onChange: this.handleTitleChange }),
-        _react2.default.createElement('input', { value: body, placeholder: 'Enter something', onChange: this.handleBodyChange }),
+        _react2.default.createElement('input', { value: title, placeholder: 'Enter something', onChange: this.handleChange("title") }),
+        _react2.default.createElement('textarea', { value: body, onChange: this.handleChange("body") }),
         _react2.default.createElement(
           'button',
           { onClick: this.submitTodo },

@@ -7,7 +7,7 @@ const TodoList = ({todos, receiveTodo}) => {
   console.log(todos); //rn undef
   return(
     <div>
-      <TodoForm info={uniqId()} receiveTodo={receiveTodo} />
+      <TodoForm id={uniqId()} receiveTodo={receiveTodo} />
       <ul>
         {todos.map( (todo) => <TodoListItem key={todo.id} todo={todo} />)}
       </ul>
