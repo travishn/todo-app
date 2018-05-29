@@ -13,6 +13,7 @@ import {allTodos} from "./reducers/selectors";
 // const _store = configureStore();
 // window.store = _store;
 //
+
 // const newTodos = ()=>({
 //   1: {
 //     id: 1,
@@ -27,13 +28,6 @@ import {allTodos} from "./reducers/selectors";
 //     done: true
 //   },
 // });
-//
-// window.newTodos = newTodos;
-// console.log(window.store.getState()); // should return default state object
-// console.log(window.store.dispatch(receiveTodo({ id: 3, title: 'ANOTHER TODO' })));
-// console.log(window.store.getState()); // should include the newly added todo
-// console.log(window.store.dispatch(receiveTodos(newTodos)));
-// console.log(window.store.getState()); // should return only the new todos
 
 document.addEventListener('DOMContentLoaded',()=>{
   const rootEl = document.getElementById("root");

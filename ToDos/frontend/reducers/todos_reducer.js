@@ -9,17 +9,6 @@ const todosReducer = (state = {}, action) => {
       const id = action.todo.id;
       const newObject = {id: action.todo};
       return merge({}, state, newObject);
-
-      // const found = state.id;
-      // if(found == null){
-      //   let newState = merge(state, {id: action.todo});
-      //   return newState;
-      // } else {
-      //   let newState = merge(state,{}); //dup
-      //   newState.id = action.todo;
-      //   return newState;
-      // }
-
     case RECEIVE_TODOS:
       return action.todos;
     default:
